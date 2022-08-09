@@ -74,10 +74,9 @@ class TweetDfExtractor:
 
     # 
     def find_screen_name(self)->list:
-        screen_name = [tweet['user']['screen_name'] for x in self.tweets_list]
+        screen_name = [x['user']['screen_name'] for x in self.tweets_list]
         
         return screen_name
-    
     # 
     def find_followers_count(self)->list:
         followers_count = [tweet['user']['followers_count'] for tweet in self.tweets_list]
@@ -168,7 +167,7 @@ class TweetDfExtractor:
         mentions = self.find_mentions()
         location = self.find_location()
         data = zip(created_at, source, full_text, subjectivity, polarity, lang, fav_count, retweet_count, 
-                   screen_name,followers_count, friends_count, sensitivity, hashtags, mentions, location)
+                   ,followers_count, friends_count, sensitivity, hashtags, mentions, location)
         df = pd.DataFrame(data=data, columns=columns)
 
         if save:
