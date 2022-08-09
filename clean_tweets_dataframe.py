@@ -58,3 +58,10 @@ class Clean_Tweets:
         df = ----
         
         return df
+# adding the main 
+if __name__ == "__main__":
+        # Reading the CSV file
+        #_, tweet_list = read_json("global_twitter_data.json")
+        df = pd.read_csv('processed_tweet_data.csv')
+        df = Clean_Tweets(df)
+        #tweet_df = tweet.get_tweet_df(save = True)
