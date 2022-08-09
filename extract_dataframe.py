@@ -68,13 +68,13 @@ class TweetDfExtractor:
     
     # 
     def find_source(self)->list:
-        source = [tweet['source'] for x in self.tweets_list]
+        source = [tweet['source'] for tweet in self.tweets_list]
 
         return source
 
     # 
     def find_screen_name(self)->list:
-        screen_name = [x['user']['screen_name'] for x in self.tweets_list]
+        screen_name = [tweet['user']['screen_name'] for x in self.tweets_list]
         
         return screen_name
     
