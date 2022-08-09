@@ -7,6 +7,7 @@ class Clean_Tweets:
     """
     def __init__(self, df:pd.DataFrame):
         self.df = df
+        print(self.df.head(3))
         print('Automation in Action...!!!')
         
     def drop_unwanted_column(self, df:pd.DataFrame)->pd.DataFrame:
@@ -31,12 +32,12 @@ class Clean_Tweets:
         """
         convert column to datetime
         """
+        self.df['created_at'] = pd.to_datetime(self.df['created_at'], errors='coerce')
+        #df["created_at"] = pd.to_datetime(df["created_at"])
         
-        df["created_at"] = pd.to_datetime(df["created_at"])
+        self.df = df[df['created_at'] >= '2020-12-31' ]
         
-        df = df[df['created_at'] >= '2020-12-31' ]
-        
-        return df
+        return self.df
     
     def convert_to_numbers(self, df:pd.DataFrame)->pd.DataFrame:
         """
@@ -57,15 +58,20 @@ class Clean_Tweets:
         """
         df = df[df['lang'] == 'en']        
         return df
-    def save_file(self, df:pd.DataFrame):
-        df.to_csv('cleaned_data.csv')
-        print("successfully cleaned")
+  
 # adding the main 
 if __name__ == "__main__":
-        # Reading the CSV file
-        #_, tweet_list = read_json("global_twitter_data.json")
-        df = pd.read_csv('processed_tweet_data.csv')
-        df = Clean_Tweets(df)
-        
+      
+        df_cleaned = pd.read_csv("processed_tweet_data.csv")
+        clean_tweets = Clean_Tweets(df_cleaned)
+        df_cleaned = clean_tweets.drop_duplicate(df_cleaned)
+        df_cleaned = clean_tweets.remove_non_english_tweets(df_cleaned)
+        df_cleaned = clean_tweets.convert_to_datetime(df_cleaned)
+        df_cleaned = clean_tweets.drop_unwanted_column(df_cleaned)
+        df_cleaned = clean_tweets.convert_to_numbers(df_cleaned)
+        #print(cleaned_df['polarity'][0:5])
+    
+        df_cleaned.to_csv('clean_processed_Tw_data.csv', index = False)
+        print('File Successfully Saved.!!!')
 
         #tweet_df = tweet.get_tweet_df(save = True)
