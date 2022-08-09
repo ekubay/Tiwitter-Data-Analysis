@@ -167,7 +167,7 @@ class TweetDfExtractor:
         mentions = self.find_mentions()
         location = self.find_location()
         data = zip(created_at, source, full_text, subjectivity, polarity, lang, fav_count, retweet_count, 
-                   ,followers_count, friends_count, sensitivity, hashtags, mentions, location)
+                   screen_name,followers_count, friends_count, sensitivity, hashtags, mentions, location)
         df = pd.DataFrame(data=data, columns=columns)
 
         if save:
