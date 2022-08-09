@@ -74,10 +74,9 @@ class TweetDfExtractor:
 
     # 
     def find_screen_name(self)->list:
-        screen_name = [tweet['user']['screen_name'] for x in self.tweets_list]
+        screen_name = [x['user']['screen_name'] for x in self.tweets_list]
         
         return screen_name
-    
     # 
     def find_followers_count(self)->list:
         followers_count = [tweet['user']['followers_count'] for tweet in self.tweets_list]
@@ -86,7 +85,7 @@ class TweetDfExtractor:
 
     # 
     def find_friends_count(self)->list:
-        friends_count = [tweet['user']['fi']]
+        friends_count = [tweet['user']['friends_count'] for tweet in tweet_list]
         
         return friends_count
 
@@ -102,33 +101,31 @@ class TweetDfExtractor:
 
     # 
     def find_favourite_count(self)->list:
-         favorite_count = [x.get('retweeted_status',{}).get('favorite_count',0) for x in self.tweets_list]
-
-         return favorite_count
-
+         
+        favorite_count = [x.get('retweeted_status',{}).get('favorite_count',0) for x in self.tweets_list]
+        return favorite_count
     # 
     def find_retweet_count(self)->list:
+        
         retweet_count = []
         for tweet in self.tweets_list:
             if 'retweeted_status' in tweet.keys():
                 retweet_count.append(tweet['retweeted_status']['retweet_count'])
             else: retweet_count.append(0)
-    
         return retweet_count
-
     # 
     def find_hashtags(self)->list:
+        
         hashtags = []
-        for tw in self.tweets_list:
-            hashtags.append(", ".join([hashtag_item['text'] for hashtag_item in tw['entities']['hashtags']]))
+        for tweet in self.tweets_list:
+            hashtags.append(", ".join([hashtag_item['text'] for hashtag_item in tweet['entities']['hashtags']]))
             
         return hashtags
-
-    # 
+   #
     def find_mentions(self)->list:
         mentions = []
-        for tw in self.tweets_list:
-            mentions.append( ", ".join([mention['screen_name'] for mention in tw['entities']['user_mentions']]))
+        for tweet in self.tweets_list:
+            mentions.append( ", ".join([mention['screen_name'] for mention in tweet['entities']['user_mentions']]))
 
         return mentions
 
