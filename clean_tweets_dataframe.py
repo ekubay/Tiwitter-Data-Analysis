@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+#import numpy as np
 
 class Clean_Tweets:
     """
@@ -24,7 +24,7 @@ class Clean_Tweets:
         drop duplicate rows
         """
         
-        #df.drop_duplicates(inplace = True)
+        df.drop_duplicates(inplace = True)
         
         return df
     def convert_to_datetime(self, df:pd.DataFrame)->pd.DataFrame:
@@ -32,8 +32,7 @@ class Clean_Tweets:
         convert column to datetime
         """
         
-        #df["created_at"] = pd.to_datetime(df["created_at"])
-        
+        df["created_at"] = pd.to_datetime(df["created_at"])
         
         df = df[df['created_at'] >= '2020-12-31' ]
         
@@ -44,7 +43,9 @@ class Clean_Tweets:
         convert columns like polarity, subjectivity, retweet_count
         favorite_count etc to numbers
         """
-        df['polarity'] = pd.
+        #df[["a", "b"]] = df[["a", "b"]].apply(pd.to_numeric)
+
+        df[['polarity','subjectivity','retweet_count', 'favorite_count']] =  df[['polarity','subjectivity','retweet_count', 'favorite_count']].apply(pd.to_numeric)
         
         
         
@@ -54,7 +55,17 @@ class Clean_Tweets:
         """
         remove non english tweets from lang
         """
-        
-        df = ----
-        
+        df = df[df['lang'] == 'en']        
         return df
+    def save_file(self, df:pd.DataFrame):
+        df.to_csv('cleaned_data.csv')
+        print("successfully cleaned")
+# adding the main 
+if __name__ == "__main__":
+        # Reading the CSV file
+        #_, tweet_list = read_json("global_twitter_data.json")
+        df = pd.read_csv('processed_tweet_data.csv')
+        df = Clean_Tweets(df)
+        
+
+        #tweet_df = tweet.get_tweet_df(save = True)
