@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+#import numpy as np
 
 class Clean_Tweets:
     """
@@ -57,11 +57,15 @@ class Clean_Tweets:
         """
         df = df[df['lang'] == 'en']        
         return df
+    def save_file(self, df:pd.DataFrame):
+        df.to_csv('cleaned_data.csv')
+        print("successfully cleaned")
 # adding the main 
 if __name__ == "__main__":
         # Reading the CSV file
         #_, tweet_list = read_json("global_twitter_data.json")
         df = pd.read_csv('processed_tweet_data.csv')
         df = Clean_Tweets(df)
+        
 
         #tweet_df = tweet.get_tweet_df(save = True)
