@@ -62,13 +62,13 @@ class TweetDfExtractor:
 
     # 
     def find_created_time(self)->list:
-        created_at = [t['created_at'] for x in self.tweets_list]
+        created_at = [tweet['created_at'] for tweet in self.tweets_list]
        
         return created_at
     
     # 
     def find_source(self)->list:
-        source = [x['source'] for x in self.tweets_list]
+        source = [tweet['source'] for x in self.tweets_list]
 
         return source
 
