@@ -71,7 +71,7 @@ if __name__ == "__main__":
         df_cleaned = clean_tweets.convert_to_numbers(df_cleaned)
         #print(cleaned_df['polarity'][0:5])
     
-        df_cleaned.to_csv('clean_processed_twitter_data.csv', index = False)
+        df_cleaned.to_csv('cleaned_twitter_data.csv', index = False)
         print('File Successfully Saved.!!!')
 
         #tweet_df = tweet.get_tweet_df(save = True)
