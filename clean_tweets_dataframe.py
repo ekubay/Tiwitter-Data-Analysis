@@ -73,5 +73,3 @@ if __name__ == "__main__":
     
         df_cleaned.to_csv('cleaned_twitterData_data.csv', index = False)
         print('File Successfully Saved.!!!')
-
-        #tweet_df = tweet.get_tweet_df(save = True)
