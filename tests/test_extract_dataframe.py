@@ -58,24 +58,17 @@ class TestTweetDfExtractor(unittest.TestCase):
     def test_find_statuses_count(self):
          self.assertEqual(self.df.find_statuses_count(), [8097, 5831, 1627, 1627, 18958])
 
-    # def test_find_full_text(self):
-    #     # text = [ "RT @i_ameztoy: Extra random image (I):",
-    #     #           "RT @IndoPac_Info: #China's media explains the military reasons for each area of the drills in the #Taiwan Strait",
-    #     #           "China even cut off communication, they don't anwer phonecalls from the US. But here clown @ZelenskyyUa enters the stage to ask #XiJinping to change Putin's mind.",
-    #     #           "Putin to #XiJinping : I told you my friend, Taiwan will be a vassal state, including nukes, much like the Ukrainian model. I warned you... But it took Pelosi to open China's eyes.",
-    #     #           "RT @ChinaUncensored: Iâ€™m sorry, I thought Taiwan was an independent country because it had its own government, currency, military, travel dâ€¦"       
-    #     #        ]
-    #     text = [
-    #         "RT @i_ameztoy Extra random image I Lets focus in one very specific zone of the western coast gt Longjing District Taichung #City #Ta",
-    #         "RT @IndoPac_Info #Chinas media explains the military reasons for each area of the drills in the #Taiwan Strait Read the labels in the pi",
-    #         "China even cut off communication they dont anwer phonecalls from the US But here clown @ZelenskyyUa enters the stage to ask #XiJinping to change Putins mind",
-    #         "Putin to #XiJinping I told you my friend Taiwan will be a vassal state including nukes much like the Ukrainian model I warned you But it took Pelosi to open Chinas eyes",
-    #         "RT @ChinaUncensored I’m sorry I thought Taiwan was an independent country because it had its own government currency military travel d"
-    #     ]
-    #     self.assertEqual(self.df.find_full_text(), text)
+    def test_find_full_text(self):
+        text = text = [
+            "RT @i_ameztoy: Extra random image (I):\n\nLets focus in one very specific zone of the western coast -&gt; Longjing District, Taichung #City, #Ta\u2026",
+            "RT @IndoPac_Info: #China's media explains the military reasons for each area of the drills in the #Taiwan Strait\n\nRead the labels in the pi\u2026", 
+            "China even cut off communication, they don't anwer phonecalls from the US. But here clown @ZelenskyyUa enters the stage to ask #XiJinping to change Putin's mind.", 
+            "Putin to #XiJinping : I told you my friend, Taiwan will be a vassal state, including nukes, much like the Ukrainian model. I warned you... But it took Pelosi to open China's eyes.", 
+            "RT @ChinaUncensored: I\u2019m sorry, I thought Taiwan was an independent country because it had its own government, currency, military, travel d\u2026", ]
+        self.assertEqual(self.df.find_full_text(), text)
 
-    # def test_find_sentiments(self):
-    #     self.assertEqual(self.df.find_sentiments(self.df.find_full_text()), ([0.190625, 0.1, 0.0, 0.35, 0.55625]))
+    def test_find_sentiments(self):
+        self.assertEqual(self.df.find_sentiments(self.df.find_full_text()), ([0.190625, 0.1, 0.0, 0.35, 0.55625]))
 
     def test_find_screen_name(self):
         name = ['i_ameztoy', 'ZIisq', 'Fin21Free', 'Fin21Free', 'VizziniDolores']
