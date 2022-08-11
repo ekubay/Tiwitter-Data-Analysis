@@ -68,7 +68,8 @@ class TestTweetDfExtractor(unittest.TestCase):
         self.assertEqual(self.df.find_full_text(), text)
 
     def test_find_sentiments(self):
-        self.assertEqual(self.df.find_sentiments(self.df.find_full_text()), ([0.190625, 0.1, 0.0, 0.35, 0.55625]))
+        F_sent =[0.190625, 0.1, 0.0, 0.35, 0.55625]
+        self.assertEqual(self.df.find_sentiments(), F_sent)
 
     def test_find_screen_name(self):
         name = ['i_ameztoy', 'ZIisq', 'Fin21Free', 'Fin21Free', 'VizziniDolores']
