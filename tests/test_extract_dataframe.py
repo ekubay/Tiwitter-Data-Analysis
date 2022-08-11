@@ -68,8 +68,9 @@ class TestTweetDfExtractor(unittest.TestCase):
         self.assertEqual(self.df.find_full_text(), text)
 
     def test_find_sentiments(self):
-        F_sent =[-0.125, -0.1, 0.0, 0.1, -6.938893903907]
-        self.assertEqual(self.df.find_sentiments(self.df.find_full_text ()), F_sent)
+        values = ([-0.125, -0.1, 0.0, 0.1, -6.938893903907228e-18],
+                            [0.190625, 0.1, 0.0, 0.35, 0.55625])
+        self.assertEqual(self.df.find_sentiments(self.df.find_full_text()),values)
 
     def test_find_screen_name(self):
         name = ['i_ameztoy', 'ZIisq', 'Fin21Free', 'Fin21Free', 'VizziniDolores']
@@ -92,11 +93,11 @@ class TestTweetDfExtractor(unittest.TestCase):
     def test_find_location(self):
         self.assertEqual(self.df.find_location(), ['', '', 'Netherlands', 'Netherlands', 'Ayent, Schweiz'])
 
-    # def test_find_hashtags(self):
-    #     self.assertEqual(self.df.find_hashtags(), )
+    def test_find_hashtags(self):
+        self.assertEqual(self.df.find_hashtags(), ['City','China, Taiwan','XiJinping','XiJinping',''])
 
-    # def test_find_mentions(self):
-    #     self.assertEqual(self.df.find_mentions(), )
+    def test_find_mentions(self):
+        self.assertEqual(self.df.find_mentions(), ['i_ameztoy', 'IndoPac_Info', 'ZelenskyyUa', '', 'ChinaUncensored'])
 
 if __name__ == "__main__":
     unittest.main()
