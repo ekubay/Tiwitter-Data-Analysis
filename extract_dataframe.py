@@ -85,8 +85,8 @@ class TweetDfExtractor:
 
     # 
     def find_friends_count(self)->list:
-        friends_count = [tweet['user']['friends_count'] for tweet in tweet_list]
-        
+        friends_count = [tweet['user']['friends_count'] for tweet in self.tweets_list]
+        print(friends_count)
         return friends_count
 
     # 
@@ -170,11 +170,11 @@ class TweetDfExtractor:
                    screen_name,followers_count, friends_count, sensitivity, hashtags, mentions, location)
         df = pd.DataFrame(data=data, columns=columns)
 
-        if save:
-            df.to_csv('processed_tweet_data.csv', index=False)
-            print('File Successfully Saved.!!!')
+        # if save:
+        #     df.to_csv('processed_tweet_data.csv', index=False)
+        #     print('File Successfully Saved.!!!')
         
-        return df
+        # return df
 
                 
 if __name__ == "__main__":
